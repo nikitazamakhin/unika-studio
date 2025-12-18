@@ -1,0 +1,23 @@
+# System
+.DS_Store
+.env
+.env.local
+.venv/
+__pycache__/
+
+# Dependencies
+node_modules/
+
+# Generated Assets (Keep repo light)
+*.mp4
+*.jpg
+*.png
+!web/public/*.jpg
+!web/public/*.png
+!platform/public/*.jpg
+!platform/public/*.png
+
+# Next.js
+.next/
+out/
+build/

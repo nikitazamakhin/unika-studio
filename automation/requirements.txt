@@ -1,0 +1,7 @@
+openai
+moviepy
+python-dotenv
+pandas
+requests
+fal-client
+apify-client
