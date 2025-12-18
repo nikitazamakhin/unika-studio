@@ -85,7 +85,9 @@ export default function ImageGenerator({ onImageGenerated }: { onImageGenerated?
             }
             setLogs((prev) => [...prev, "✅ Generation complete!"]);
         } catch (error: any) {
-            setLogs((prev) => [...prev, `❌ Error: ${error.message}`]);
+            console.error(error);
+            const msg = error.message || JSON.stringify(error) || "Unknown Error";
+            setLogs((prev) => [...prev, `❌ Error: ${msg}`]);
         } finally {
             setLoading(false);
         }
