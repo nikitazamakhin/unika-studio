@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SmoothScroll from '@/components/SmoothScroll';
 import { GoogleAnalytics } from '@next/third-parties/google';
 // import { Geist, Geist_Mono } from "next/font/google"; // Disabled due to build error
 import "./globals.css";
@@ -26,9 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased font-sans`}
+        className="antialiased font-sans"
       >
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
         <GoogleAnalytics gaId="G-XXXXXXXXXX" /> {/* REPLACE WITH YOUR GA4 ID */}
       </body>
     </html>

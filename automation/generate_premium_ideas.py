@@ -1,3 +1,7 @@
+import sys
+import os
+# Add user site-packages explicitly
+sys.path.append(os.path.expanduser("~/Library/Python/3.8/lib/python/site-packages"))
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
