@@ -44,28 +44,32 @@ export const content = {
                     client: "Neon Energy",
                     type: "Commercial Spot",
                     description: "Cyberpunk aesthetic energy drink commercial generated 100% with AI.",
-                    color: "from-purple-600 to-blue-600"
+                    color: "from-purple-600 to-blue-600",
+                    image: "/cases/neon_energy.png"
                 },
                 {
                     id: 2,
                     client: "Vogue Tech",
                     type: "Fashion Editorial",
                     description: "Surreal fashion showcase for wearble technology accessories.",
-                    color: "from-pink-500 to-rose-500"
+                    color: "from-pink-500 to-rose-500",
+                    image: "/cases/vogue_tech.png"
                 },
                 {
                     id: 3,
                     client: "Future Motors",
                     type: "Product Reveal",
                     description: "Concept car anticipation video using generative 3D visualization.",
-                    color: "from-amber-500 to-orange-600"
+                    color: "from-amber-500 to-orange-600",
+                    image: "/cases/future_motors.png"
                 },
                 {
                     id: 4,
                     client: "Zenith Real Estate",
                     type: "Architectural Viz",
                     description: "Dreamscape luxury property tours that defy physics.",
-                    color: "from-emerald-500 to-teal-600"
+                    color: "from-emerald-500 to-teal-600",
+                    image: "/cases/zenith_estate.png"
                 }
             ]
         },
@@ -155,28 +159,32 @@ export const content = {
                     client: "Neon Energy",
                     type: "Рекламный ролик",
                     description: "Киберпанк-эстетика для энергетика, созданная на 100% с помощью ИИ.",
-                    color: "from-purple-600 to-blue-600"
+                    color: "from-purple-600 to-blue-600",
+                    image: "/cases/neon_energy.png"
                 },
                 {
                     id: 2,
                     client: "Vogue Tech",
                     type: "Fashion Эдиториал",
                     description: "Сюрреалистичный показ модных технологических аксессуаров.",
-                    color: "from-pink-500 to-rose-500"
+                    color: "from-pink-500 to-rose-500",
+                    image: "/cases/vogue_tech.png"
                 },
                 {
                     id: 3,
                     client: "Future Motors",
                     type: "Презентация продукта",
                     description: "Тизер концепт-кара с использованием генеративной 3D-визуализации.",
-                    color: "from-amber-500 to-orange-600"
+                    color: "from-amber-500 to-orange-600",
+                    image: "/cases/future_motors.png"
                 },
                 {
                     id: 4,
                     client: "Zenith Real Estate",
                     type: "Архитектурная виз.",
                     description: "Туры по элитной недвижимости мечты, бросающие вызов физике.",
-                    color: "from-emerald-500 to-teal-600"
+                    color: "from-emerald-500 to-teal-600",
+                    image: "/cases/zenith_estate.png"
                 }
             ]
         },
