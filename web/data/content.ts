@@ -26,13 +26,33 @@ export const content = {
                 title: "Commercial Video",
                 desc: "High-end, bespoke AI cinematography for TV commercials, brand movies, and music videos. Impossible visuals, produced at a fraction of the cost of traditional VFX.",
                 features: ["Cinematic 4K Quality", "Custom Storyboarding", "Broadcast Rights Included"],
-                cta: "Request Quote"
+                cta: "Request Quote",
+                form: {
+                    title: "Start Production",
+                    fields: {
+                        name: "Name / Company",
+                        email: "Email Address",
+                        type: "Project Type",
+                        budget: "Estimated Budget",
+                        desc: "Brief Description"
+                    },
+                    submit: "Send Brief"
+                }
             },
             viral: {
                 title: "AI SMM Packages",
                 desc: "\"Content as a Service\". A steady stream of viral-ready vertical videos (Reels/Shorts) designed to hijack algorithms and grow your audience.",
                 features: ["Monthly Content Deliveries", "Trend-Jacking Formats", "Optimized for Retention"],
-                cta: "View Packages"
+                cta: "View Packages",
+                pricing: {
+                    title: "Select Your Plan",
+                    plans: [
+                        { name: "Explorer", price: "$2,500/mo", features: ["10 Reels/mo", "Standard Trends", "Basic Hooks"] },
+                        { name: "Viral", price: "$4,500/mo", features: ["20 Reels/mo", "Custom AI Avatars", "Trend Jacking"], recommended: true },
+                        { name: "Dominator", price: "$8,000/mo", features: ["30 Reels/mo", "Full CGI Production", "Viral Engineering"] }
+                    ],
+                    action: "Choose Plan"
+                }
             }
         },
         portfolio: {
@@ -141,13 +161,33 @@ export const content = {
                 title: "Коммерческое Видео",
                 desc: "Премиальная AI-кинематография для ТВ-рекламы, бренд-фильмов и клипов. Невозможный визуал за долю стоимости традиционного VFX.",
                 features: ["Кинематографическое 4K качество", "Уникальная раскадровка", "Права на трансляцию"],
-                cta: "Запросить смету"
+                cta: "Запросить смету",
+                form: {
+                    title: "Начать проект",
+                    fields: {
+                        name: "Имя / Компания",
+                        email: "Email",
+                        type: "Тип проекта",
+                        budget: "Бюджет",
+                        desc: "Описание задачи"
+                    },
+                    submit: "Отправить бриф"
+                }
             },
             viral: {
                 title: "AI SMM Пакеты",
                 desc: "\"Контент как сервис\". Поток вирусных вертикальных видео (Reels/Shorts), созданных для захвата алгоритмов и роста аудитории.",
                 features: ["Ежемесячные поставки контента", "Трендовые форматы", "Оптимизация под удержание"],
-                cta: "Смотреть пакеты"
+                cta: "Смотреть пакеты",
+                pricing: {
+                    title: "Выберите тариф",
+                    plans: [
+                        { name: "Explorer", price: "$2,500/мес", features: ["10 Reels/мес", "Стандартные тренды", "Базовые хуки"] },
+                        { name: "Viral", price: "$4,500/мес", features: ["20 Reels/мес", "Кастомные AI Аватары", "Тренд-джекинг"], recommended: true },
+                        { name: "Dominator", price: "$8,000/мес", features: ["30 Reels/мес", "Полный CGI Продакшен", "Вирусная инженерия"] }
+                    ],
+                    action: "Выбрать"
+                }
             }
         },
         portfolio: {
