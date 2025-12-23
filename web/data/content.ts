@@ -119,6 +119,18 @@ export const content = {
                 }
             ]
         },
+        showreel: {
+            title: "VISUAL ALCHEMY",
+            subtitle: "SHOWREEL 2025",
+            video: "/videos/showreel_placeholder.mp4",
+            poster: "/cases/future_motors.png"
+        },
+        vision: {
+            title: "THE FUTURE IS SYNTHETIC",
+            subtitle: "JOIN THE REVOLUTION",
+            video: "/videos/vision_placeholder.mp4",
+            poster: "/cases/zenith_estate.png"
+        },
         footer: {
             title: "Let's Talk",
             cta: "START PROJECT",
