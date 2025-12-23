@@ -12,10 +12,10 @@ node_modules/
 *.mp4
 *.jpg
 *.png
-!web/public/*.jpg
-!web/public/*.png
-!platform/public/*.jpg
-!platform/public/*.png
+!web/public/**/*.jpg
+!web/public/**/*.png
+!platform/public/**/*.jpg
+!platform/public/**/*.png
 
 # Next.js
 .next/
