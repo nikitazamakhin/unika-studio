@@ -1,5 +1,6 @@
 import os
-import requests
+import json
+import subprocess
 import time
 from dotenv import load_dotenv
 
@@ -9,60 +10,101 @@ FAL_KEY = os.getenv("FAL_KEY")
 
 def generate_image(prompt, model="fal-ai/flux/schnell", image_size="landscape_4_3"):
     """
-    Generates an image using Fal.ai (Flux Schnell by default).
+    Generates an image using Fal.ai via curl (to avoid python SSL issues).
     """
     if not FAL_KEY:
-        raise ValueError("FAL_KEY not found in environment variables")
+        print("Error: FAL_KEY not found")
+        return None
 
     url = f"https://queue.fal.run/{model}"
-    headers = {
-        "Authorization": f"Key {FAL_KEY}",
-        "Content-Type": "application/json"
-    }
+    
     payload = {
         "prompt": prompt,
         "image_size": image_size,
-        "num_inference_steps": 4, # Schnell is fast with fewer steps
+        "num_inference_steps": 4,
         "enable_safety_checker": False
     }
 
     print(f"Generating image with prompt: {prompt[:50]}...")
+    
     try:
-        response = requests.post(url, json=payload, headers=headers)
-        response.raise_for_status()
+        # Construct curl command
+        curl_cmd = [
+            "curl", "-s", "-X", "POST", url,
+            "-H", f"Authorization: Key {FAL_KEY}",
+            "-H", "Content-Type: application/json",
+            "-d", json.dumps(payload)
+        ]
         
-        # For queue-based endpoints, we might need to poll, 
-        # but Flux Schnell on fal.run is often synchronous-like or returns result quickly if using 'queue'??
-        # Actually 'queue.fal.run' is the queue endpoint. 
-        # Let's check if we strictly need to poll request_id.
+        result = subprocess.run(curl_cmd, capture_output=True, text=True)
         
-        data = response.json()
+        if result.returncode != 0:
+            print(f"Curl error: {result.stderr}")
+            return None
+            
+        try:
+            data = json.loads(result.stdout)
+        except json.JSONDecodeError:
+            print(f"Failed to decode JSON: {result.stdout}")
+            return None
+            
+        if "images" in data:
+            return data["images"][0]["url"]
         
-        # If it returns a requestId, we might need to poll.
-        if "request_id" in data and "images" not in data:
-            request_id = data["request_id"]
-            return _poll_result(url, request_id, headers)
-        
-        return data.get("images", [])[0].get("url")
-
-    except Exception as e:
-        print(f"Error generating image: {e}")
+        # Poll if needed
+        if "request_id" in data:
+            if "status_url" in data:
+                return _poll_result(data["status_url"])
+            # Fallback if status_url is missing (unlikely now)
+            return None
+            
+        print(f"Unexpected response: {data}")
         return None
 
-def _poll_result(base_url, request_id, headers):
-    status_url = f"{base_url}/requests/{request_id}"
-    print(f"Polling for result {request_id}...")
+    except Exception as e:
+        print(f"Error during generation: {e}")
+        return None
+
+def _poll_result(status_url):
+    print(f"Polling {status_url}...")
     
-    for _ in range(30): # Wait up to 30 seconds
-        response = requests.get(status_url, headers=headers)
-        if response.status_code == 200:
-            data = response.json()
-            if "images" in data:
-                return data["images"][0]["url"]
-            if data.get("status") == "IN_QUEUE" or data.get("status") == "IN_PROGRESS":
-                time.sleep(1)
-                continue
+    for _ in range(120):
+        curl_cmd = [
+            "curl", "-s", status_url,
+            "-H", f"Authorization: Key {FAL_KEY}",
+            "-H", "Content-Type: application/json"
+        ]
+        result = subprocess.run(curl_cmd, capture_output=True, text=True)
+        
+        if result.returncode == 0:
+            try:
+                data = json.loads(result.stdout)
+                if "images" in data:
+                    return data["images"][0]["url"]
+                
+                status = data.get("status")
+                if status == "COMPLETED":
+                    # Fetch from response_url
+                    if "response_url" in data:
+                        resp_url = data["response_url"]
+                        print(f"Fetching result from {resp_url}...")
+                        curl_cmd_res = [
+                            "curl", "-s", resp_url,
+                            "-H", f"Authorization: Key {FAL_KEY}",
+                            "-H", "Content-Type: application/json"
+                        ]
+                        res_result = subprocess.run(curl_cmd_res, capture_output=True, text=True)
+                        if res_result.returncode == 0:
+                            res_data = json.loads(res_result.stdout)
+                            if "images" in res_data:
+                                return res_data["images"][0]["url"]
+                
+                if status in ["IN_QUEUE", "IN_PROGRESS"]:
+                    time.sleep(1)
+                    continue
+            except:
+                pass
         time.sleep(1)
     
-    print("Timed out waiting for result.")
+    print("Timed out.")
     return None

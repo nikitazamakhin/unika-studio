@@ -14,7 +14,7 @@ def main():
     
     for i, prompt in enumerate(base_prompts):
         print(f"\n--- Concept {i+1} ---")
-        image_url = fal_client.generate_image(prompt, image_size="portrait_9_16") # Vertical for Reels
+        image_url = fal_client.generate_image(prompt, image_size="portrait_16_9") # Vertical for Reels (API calls it portrait_16_9)
         
         if image_url:
             print(f"Result {i+1}: {image_url}")

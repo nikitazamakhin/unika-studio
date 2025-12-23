@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Process from "@/components/Process";
 import Footer from "@/components/Footer";
+import VideoSection from "@/components/VideoSection";
 import { content } from "@/data/content";
 import { Metadata } from "next";
 
@@ -28,9 +29,26 @@ export default function HomeRU() {
             <Navbar content={c.navbar} />
             <Hero content={c.hero} />
 
+            {/* Showreel Block */}
+            <VideoSection
+                videoUrl={c.showreel.video}
+                posterUrl={c.showreel.poster}
+                title={c.showreel.title}
+                subtitle={c.showreel.subtitle}
+            />
+
             <Services content={c.services} />
             <Portfolio content={c.portfolio} />
             <Process content={c.process} />
+
+            {/* Vision Block */}
+            <VideoSection
+                videoUrl={c.vision.video}
+                posterUrl={c.vision.poster}
+                title={c.vision.title}
+                subtitle={c.vision.subtitle}
+                overlayColor="bg-primary/20"
+            />
 
             <Footer content={c.footer} />
         </main>
