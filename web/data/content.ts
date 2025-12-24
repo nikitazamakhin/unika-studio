@@ -266,6 +266,18 @@ export const content = {
                 }
             ]
         },
+        showreel: {
+            title: "ВИЗУАЛЬНАЯ АЛХИМИЯ",
+            subtitle: "ШОУРИЛ 2025",
+            video: "/videos/showreel_placeholder.mp4",
+            poster: "/cases/future_motors.png"
+        },
+        vision: {
+            title: "БУДУЩЕЕ СИНТЕТИЧНО",
+            subtitle: "ПРИСОЕДИНЯЙТЕСЬ К РЕВОЛЮЦИИ",
+            video: "/videos/vision_placeholder.mp4",
+            poster: "/cases/zenith_estate.png"
+        },
         footer: {
             title: "Обсудить проект",
             cta: "НАЧАТЬ",
